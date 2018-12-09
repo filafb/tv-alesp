@@ -15,9 +15,10 @@ A ready-to-use boilerplate for applications using Node.js, Express, Sequelize, R
   2. Create two databases using `Postgres` command line:
     - createdb <your_application_name>
     - createdb <your_application_name-test>
-  3. Run the following script:
+  3. `npm install`
+  4. Run the following script:
   `npm run start-dev`
-  4. Enjoy it on localhost:4321. Want a different port? No worries. Set it on `server/index` line 2.
+  5. Enjoy it on localhost:4321. Want a different port? No worries. Set it on `server/index` line 2.
 
 ## Testing it:
   `npm test`
