@@ -1,4 +1,5 @@
 import React, {useState, useCallback} from 'react'
+import socket from '../../socket'
 
 
 export default function NewMessage({dispatch, action}) {
@@ -9,6 +10,7 @@ export default function NewMessage({dispatch, action}) {
   function sendMessage (e) {
     e.preventDefault()
     dispatch(action(message))
+    socket.emit('add_message', message)
     setMessage('')
   }
   return (

@@ -7,6 +7,7 @@ const session = require('express-session')
 const {db} = require('./db')
 const passport = require('passport')
 const PORT = process.env.PORT || 4321
+const socketio = require('socket.io')
 
 //config to store session
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
@@ -72,7 +73,11 @@ const createApp = () => {
 }
 
 const startListening = () => {
-  app.listen(PORT, () => console.log(`listening on port ${PORT}`))
+  const server = app.listen(PORT, () => console.log(`listening on port ${PORT}`))
+
+  const io = socketio(server)
+  require('./socket')(io)
+
 }
 
 async function bootApp() {

@@ -1,9 +1,8 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect } from 'react'
 import ReactPlayer from 'react-player'
 import Message from './messages/Message'
 import NewMessage from './messages/NewMessage'
-
-const messages = ['hi', 'hello', 'my name is']
+import socket from '../socket'
 
 const UPDATE = 'update'
 
@@ -30,7 +29,9 @@ function updateMessage(message) {
 
 export default function Main() {
   const [messages, updateMessages] = useReducer(messageReducer, initialState)
-  console.log(messages)
+  useEffect(() => {
+    socket.on('broadcasting_message', (message) => updateMessages(updateMessage(message)))
+  },[])
   return (
     <React.Fragment>
       <ReactPlayer url='https://www.youtube.com/watch?v=rptia9mhI4o' playing />
